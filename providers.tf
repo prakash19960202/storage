@@ -23,3 +23,8 @@ credentials=file("creds.json")
 
 }
 
+provider "null" {
+
+ version = "~> 2.1"
+
+}
