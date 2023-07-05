@@ -14,17 +14,3 @@ provider "google" {
   zone    = "us-central1-a"
 }
 
-provider "google-beta" {
-
-credentials=file("creds.json")
-  project = "groovy-karma-388506"
-  region  = "us-central1"
-  zone    = "us-central1-a"
-
-}
-
-provider "null" {
-
- version = "~> 2.1"
-
-}
