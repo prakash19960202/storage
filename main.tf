@@ -1,11 +1,21 @@
-resource "google_storage_bucket" "COLDLINE" {
- name = "sqlservermedia"
- storage_class= "COLDLINE"
- location = "us-central1"
-}
+resource "null_resource" "upload_folder_content" {
 
-resource "google_storage_bucket_object" "name" {
- name = "AdventureWorks2017.bak"
- storage_class = "COLDLINE"
- bucket = "${google_storage_bucket.COLDLINE.name}"
+ triggers = {
+
+   file_hashes = jsonencode({
+
+   for fn in fileset(var.folder_path, "**") :
+
+   fn => filesha256("${var.folder_path}/${fn}")
+
+   })
+
+ }
+
+ provisioner "local-exec" {
+
+   command = "gsutil cp -r ${var.folder_path}/* gs://${var.gcs_bucket}/"
+
+ }
+
 }
