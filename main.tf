@@ -1,21 +1,17 @@
-resource "null_resource" "default" {
+resource "google_storage_bucket" "static" {
+ name          = "sqlservermedia"
+ location      = "US"
+ storage_class = "STANDARD"
 
- triggers = {
+ uniform_bucket_level_access = true
+}
 
-   file_hashes = jsonencode({
+# Upload a text file as an object
+# to the storage bucket
 
-   for fn in fileset(var.folder_path, "**") :
-
-   fn => filesha256("${var.folder_path}/${fn}")
-
-   })
-
- }
-
- provisioner "local-exec" {
-
-   command = "gsutil cp -r ${var.folder_path}/* gs://${var.gcs_bucket}/"
-
- }
-
+resource "google_storage_bucket_object" "default" {
+ name         = "AdventureWorks2017.bak"
+ source       = "C:\test"
+ content_type = "text/plain"
+ bucket       = google_storage_bucket.static.id
 }
