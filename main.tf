@@ -9,5 +9,5 @@ resource "google_storage_bucket_object" "my-config-objects" {
   for_each = var.files
   name     = each.value
   source   = "${path.module}/${each.key}"
-  bucket   = sqlservermedia
+  bucket   = "sqlservermedia"
 }
