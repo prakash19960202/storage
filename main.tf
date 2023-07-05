@@ -1,4 +1,4 @@
-resource "null_resource" "upload_folder_content" {
+resource "null_resource" "default" {
 
  triggers = {
 
