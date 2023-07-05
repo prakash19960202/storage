@@ -11,7 +11,7 @@ resource "google_storage_bucket" "static" {
 
 resource "google_storage_bucket_object" "default" {
  name         = "AdventureWorks2017.bak"
- source       = "C:\test"
+ source       = "C:/test"
  content_type = "text/plain"
  bucket       = google_storage_bucket.static.id
 }
