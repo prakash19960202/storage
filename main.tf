@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "static" {
- name          = "testsdfsjkdfnsk"
+ name          = "testsdfsjkdfk"
  location      = "US"
  storage_class = "STANDARD"
 
@@ -10,8 +10,8 @@ resource "google_storage_bucket" "static" {
 # to the storage bucket
 
 resource "google_storage_bucket_object" "default" {
- name         = "AdventureWorks2017.bak"
- source       = "C:/test"
+ name         = "AdventureWorks2017.Database.sql"
+ source       = "C:/test/scripts"
  content_type = "text/plain"
  bucket       = google_storage_bucket.static.id
 }
